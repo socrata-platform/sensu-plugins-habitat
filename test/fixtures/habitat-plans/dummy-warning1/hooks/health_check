@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "Everything is mediocre"
+exit 1

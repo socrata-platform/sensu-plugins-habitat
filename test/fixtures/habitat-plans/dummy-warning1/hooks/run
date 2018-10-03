@@ -1,0 +1,10 @@
+#!/bin/sh
+
+run_forever() {
+  while [ 1 = 1 ]; do
+    echo "Hello..."
+    sleep 5
+  done
+}
+
+exec run_forever
