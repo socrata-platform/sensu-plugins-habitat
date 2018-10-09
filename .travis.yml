@@ -1,0 +1,57 @@
+language: ruby
+
+branches:
+  only:
+    - master
+
+sudo: required
+
+addons:
+  apt:
+    sources:
+      - chef-current-trusty
+    packages:
+      - chefdk
+
+services:
+  - docker
+
+env:
+  - SUITE=unit
+  - SUITE=sensu-latest
+  - SUITE=sensu-029
+
+script:
+  - if test "$SUITE" = "unit"; then bundle exec rake; fi
+  - if test "$SUITE" != "unit"; then chef exec kitchen test $SUITE; fi
+
+stages:
+  - name: test
+  - name: deploy
+    if: NOT type = cron AND branch = master
+
+jobs:
+  include:
+    - stage: deploy
+      install: skip
+      env:
+        - VERSION=`ruby -e 'print Gem::Specification.load("sensu-plugins-habitat.gemspec").version'`
+      script: skip
+      before_deploy:
+        - openssl aes-256-cbc -K $encrypted_d1fb8dc1f270_key -iv $encrypted_d1fb8dc1f270_iv -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d
+        - chmod 0600 ~/.ssh/id_rsa
+        - git remote set-url origin git@github.com:socrata-platform/sensu-plugins-habitat
+        - git tag -a v${VERSION} -m "Tagging v${VERSION} for release"
+        - git push --tags
+      deploy:
+        provider: rubygems
+        api_key:
+          secure: F0+VKSbFkSa3/Qgbfn3ueaTRQDH5mEjkcXYl9vI6nSbUIJoozNHfwXjDbG9u4GSgmGOygC93YO6v5L6NUuM7Ngd4IfCycpConS8YMIM2xCO+QpeQq2HRlBbfgcnLd8JOf8GgiC1tmTP75vlai5i16SgE6Fki0Tea4JF4T7JmNPQObB5U0F9orB+bil6l2FTdJvgB420shP7kM89Sywe7gaUE6+EPTqEZOtURSZVcy14VDgG2ZqcNDjhWpangrQGjzucqP4yjsZ8uDY56XrSFXYdizDIBOG+/BIK8o3H4FIk2Z0Cu3s+cT/ub4ZIuC/IIA/OM/ONsn/WZVWq5O5kuxSNiRb5hLo9N8+nHlIYcapB31V1jQeFFWjiG0b8Sz1nKiRsO7tZ+SfNdGFOc6cJzDEI2qkCbKGVzFLvjqLlq1GcZwZnXfMbgKYNr9M/6UwsBEKTuvRc6SvJnptrHcy9U+U5PZhY8Fyd2fxqhW5UJO2t/6Bvc3CArnKp+xrnfUjh22fDgXx2gwLbLIgbNSFQAZ2+Zi2JBuP8XorIGBP947sDAf4B7pGTN22aE/aRTAZPs0ylsNW3bNN2O3v0Kw+FJhYzlryO25jqrP+v0ynEYMBM1FPXnFHKPovZVVSjx5sKh/pyAw3F1AtaTi6DIOX/W0dMytSrYUh5WQD0WHfXBKPE=
+
+notifications:
+  slack:
+    on_failure: change
+    on_success: never
+    on_pull_requests: false
+    rooms:
+      - secure: qhuSx8SlRyKosFpBRq7Y86+IA6hpguIfYcoQiCYKypoQLhQTw6mMOVJnZxpCs7PcnsRCzgABamwsSw4xeiWO7UUr/ZnDL/E0weSZokgHaHRuQNG6a+Xsl6qz9RxeZnA0mL7q4I65+M/QW/QTBU2dH7u0yGlFIBxMhtAm2x407wCH4k6Gycz/jdGjo54JG0wsFhiytk+nYYIeJOYHdhl5yOisnD04/wRojXX/gWM9llraKTrB1b808rBdHYkJp8uOGUQdXVC6apaCNg7SSpV9ByEaFCUJsjUJPvrLo75RZLufzxYjqB3WlEP5d2027vFJMIPe1NfBqsXjvArmbVTCtxX+5UX1guCd9P0yCzPUO/q9+zcczXqd+rwp3HnmAr0PWXe+jZO4Qk60aM5QkBDiPKfgqXKBiAmMKzcIBTLzFcjblMs9Lpm4y0qP/w2EtHxhfiEfKYa/imUsqv0BUSIdH10xH1bgByYSnzeVRY19sbvjil2HYPtSVQrpT8WnYHbXMxVgn3UkOE/B0rz26QTGVcBxiAOWbQLYniAi0cdWVg/IG1IZBc6ZS/aFai2X0qjNXmh8XT2snvNVhg24cXoZ0nGb9fH7XVHIhdhmnqscKJaFjSl9Lwe6ipwPzJTLknajeOZbVK8szgjzA0iv3Yx12h37M44lWMB7GmIuRSiMiu0=
