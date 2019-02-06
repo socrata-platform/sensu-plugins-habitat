@@ -7,6 +7,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [0.1.1] - 2019-02-06
 ### Changed
 - Update the Slack notification in the CI config
+- Update gem dependency pins
 
 ## [0.1.0] - 2017-10-09
 ### Added
