@@ -56,6 +56,12 @@ hab_dir = "#{node['build_dir']}/test/fixtures/habitat-plans"
   hab_service "#{origin}/#{plan}"
 end
 
+ruby_block 'Give Habitat 30s to run all health checks at least once' do
+  block do
+    sleep(30)
+  end
+end
+
 apt_repository 'sensu' do
   uri 'http://repositories.sensuapp.org/apt'
   key 'http://repositories.sensuapp.org/apt/pubkey.gpg'
