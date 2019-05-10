@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.test_files = s.files.grep(%r{^(test|spec|features)/})
   s.version = SensuPluginsHabitat::Version::VER_STRING
 
-  s.add_runtime_dependency 'sensu-plugin', '>= 1.2', '< 4.0'
+  s.add_runtime_dependency 'sensu-plugin', '>= 1.2', '< 5.0'
 
   s.add_development_dependency 'github-markup', '~> 3.0'
   s.add_development_dependency 'pry', '~> 0.11'
