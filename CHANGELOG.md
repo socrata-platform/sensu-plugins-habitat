@@ -7,6 +7,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [0.1.2] - 2019-05-10
 ### Changed
 - Get the build passing again
+- Switch to testing against Sensu Go's Ruby runtime
 
 ## [0.1.1] - 2019-02-06
 ### Changed

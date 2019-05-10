@@ -2,4 +2,3 @@
 
 default['staging_dir'] = nil
 default['build_dir'] = nil
-default['sensu_version'] = nil

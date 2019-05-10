@@ -24,8 +24,7 @@ before_install:
 
 env:
   - SUITE=unit
-  - SUITE=sensu-latest
-  - SUITE=sensu-029
+  - SUITE=default
 
 script:
   - if test "$SUITE" = "unit"; then bundle exec rake; fi

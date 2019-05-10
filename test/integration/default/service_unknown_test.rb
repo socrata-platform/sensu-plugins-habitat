@@ -4,7 +4,7 @@
 # Run some checks that should all result as UNKNOWN.
 #
 
-check = '/opt/sensu/embedded/bin/check-habitat-service-health.rb'
+check = '/opt/sensu-plugins-ruby/embedded/bin/check-habitat-service-health.rb'
 
 describe command("#{check} -s dummy-unknown1.default") do
   its(:exit_status) { should eq(3) }

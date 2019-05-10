@@ -4,7 +4,7 @@
 # Run some checks that should all result as CRITICAL.
 #
 
-check = '/opt/sensu/embedded/bin/check-habitat-service-health.rb'
+check = '/opt/sensu-plugins-ruby/embedded/bin/check-habitat-service-health.rb'
 
 describe command("#{check} -s dummy-critical1.default") do
   its(:exit_status) { should eq(2) }
