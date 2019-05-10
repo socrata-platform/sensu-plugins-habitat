@@ -10,7 +10,7 @@ describe command("#{check} -s dummy-unknown1.default") do
   its(:exit_status) { should eq(3) }
   its(:stdout) do
     expected = <<-EXP.gsub(/^ +/, '')
-      UNKNOWN: dummy-unknown1.default: stdout: "Who knows"; stderr: ""
+      UNKNOWN: dummy-unknown1.default: stdout: ""; stderr: ""
       CheckHabitatServiceHealth UNKNOWN: Results: 0 critical, 0 warning, 1 unknown, 0 ok
     EXP
     should eq(expected)

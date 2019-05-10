@@ -10,7 +10,7 @@ describe command("#{check} -s dummy-critical1.default") do
   its(:exit_status) { should eq(2) }
   its(:stdout) do
     expected = <<-EXP.gsub(/^ +/, '')
-      CRITICAL: dummy-critical1.default: stdout: "Everything is fraked"; stderr: ""
+      CRITICAL: dummy-critical1.default: stdout: ""; stderr: ""
       CheckHabitatServiceHealth CRITICAL: Results: 1 critical, 0 warning, 0 unknown, 0 ok
     EXP
     should eq(expected)
@@ -34,10 +34,10 @@ describe command(check) do
   its(:exit_status) { should eq(2) }
   its(:stdout) do
     expected = <<-EXP.gsub(/^ +/, '')
-      UNKNOWN: dummy-unknown1.default: stdout: "Who knows"; stderr: ""
-      WARNING: dummy-warning1.default: stdout: "Everything is mediocre"; stderr: ""
-      WARNING: dummy-warning2.default: stdout: "Everything is mediocre"; stderr: ""
-      CRITICAL: dummy-critical1.default: stdout: "Everything is fraked"; stderr: ""
+      UNKNOWN: dummy-unknown1.default: stdout: ""; stderr: ""
+      WARNING: dummy-warning1.default: stdout: ""; stderr: ""
+      WARNING: dummy-warning2.default: stdout: ""; stderr: ""
+      CRITICAL: dummy-critical1.default: stdout: ""; stderr: ""
       CheckHabitatServiceHealth CRITICAL: Results: 1 critical, 2 warning, 1 unknown, 3 ok
     EXP
     should eq(expected)
