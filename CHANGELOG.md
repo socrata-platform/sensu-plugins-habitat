@@ -9,6 +9,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Get the build passing again
 - Switch to testing against Sensu Go's Ruby runtime
 - Support sensu-plugin 4.x
+- Start deploying to GitHub Releases and add a Bonsai config
 
 ## [0.1.1] - 2019-02-06
 ### Changed
