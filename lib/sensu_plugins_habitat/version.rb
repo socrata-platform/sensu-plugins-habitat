@@ -8,7 +8,7 @@ module SensuPluginsHabitat
     # The minor version.
     MINOR = 1
     # The patch version.
-    PATCH = 3
+    PATCH = 4
     # Concat them into a version string
     VER_STRING = [MAJOR, MINOR, PATCH].compact.join('.')
   end
