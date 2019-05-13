@@ -28,4 +28,6 @@ doc/
 
 # TravisCI
 .travis/*
-!.travis/id_rsa.enc
+
+# Sensu Bonsai deploy scripts
+bonsai/
