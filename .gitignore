@@ -31,3 +31,4 @@ doc/
 
 # Sensu Bonsai deploy scripts
 bonsai/
+dist/
