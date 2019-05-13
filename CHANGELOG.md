@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
+## [0.1.5] - 2019-05-13
+### Changed
+- Create a release after creating the tag
+
 ## [0.1.4] - 2019-05-13
 ### Changed
 - Fix deploying to GitHub Releases, again
