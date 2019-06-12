@@ -7,6 +7,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [0.1.6] - 2019-06-12
 ### Changed
 - Pin CI to a Chef-DK that doesn't require a commercial license
+- Pin CI to a Habitat that doesn't require a commercial license
 
 ## [0.1.5] - 2019-05-13
 ### Changed

@@ -8,4 +8,4 @@ description 'test'
 long_description 'test'
 version '0.0.1'
 
-depends 'habitat'
+depends 'habitat', '= 0.79.1'
