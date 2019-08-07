@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
+## [0.1.7] - 2019-08-07
+### Changed
+- Resolve new style offenses
+
 ## [0.1.6] - 2019-06-12
 ### Changed
 - Pin CI to a Chef-DK that doesn't require a commercial license
